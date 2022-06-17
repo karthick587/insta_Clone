@@ -1,0 +1,10 @@
+const Postactions = {
+  GET_POST_LIST:"GET_POST_LIST",
+  SET_POST_LIST: 'SET_POST_LIST',
+  GET_POST_LIST_USER_ID:"GET_POST_LIST_USER_ID",
+  SET_POST_LIST_USER_ID: 'SET_POST_LIST_USER_ID',
+
+ 
+};
+
+export default Postactions;
