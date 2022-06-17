@@ -10,7 +10,7 @@ export default function Messenger() {
     const { UserDetails } = useSelector((state) => state.AuthReducer);
     const { conversationList } = useSelector((state) => state.MessangerReducer);
     useEffect(() => {
-        setSocket(io("ws://localhost:8900"))
+        setSocket(io("https://insta-clone-database.vercel.app"))
         dispatch({
             type: actions.GET_CONVERSATION_LIST, payload: UserDetails?.UserId
         });
