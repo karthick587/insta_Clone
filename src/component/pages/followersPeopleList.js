@@ -11,7 +11,7 @@ export default function FollowersPeopleList() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch({ type: Peopleactions.GET_FOLLOWERS_PEOPLE_LIST, payload: UserDetails?.UserId })
-    }, [Peopleactions,UserDetails])
+    }, [UserDetails])
     // console.log(UserDetails.UserId)
     return (
         <div id="wrapper">

@@ -12,7 +12,7 @@ export default function PeoplefollowersPeopleList() {
     const state = useLocation();
     useEffect(() => {
         dispatch({ type: Peopleactions.GET_FOLLOWERS_PEOPLE_LIST, payload: state?.state?.id })
-    }, [Peopleactions,UserDetails])
+    }, [UserDetails])
     // console.log(UserDetails.UserId)
     return (
         <div id="wrapper">

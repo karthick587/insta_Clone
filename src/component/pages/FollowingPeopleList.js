@@ -11,7 +11,7 @@ export default function FollowingPeopleList() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch({ type: Peopleactions.GET_FOLLOWING_PEOPLE_LIST, payload: UserDetails.UserId })
-    }, [Peopleactions,UserDetails])
+    }, [UserDetails])
 
     return (
         <div id="wrapper">

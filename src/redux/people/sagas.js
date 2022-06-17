@@ -52,7 +52,7 @@ const getUnFollowPeople=function*(data){
         const result = yield call(() =>
             axios.post(`${API_URL}/api/user/Unfollow`, payload)
         );
-      console.log(result)
+     
         yield put({ type: actions.GET_PEOPLE_LIST});
         yield put({ type: Authactions.GET_USER_DETAILS,payload:payload?.UserId});
         yield put({ type: actions.GET_PEOPLE_LIST});

@@ -12,7 +12,7 @@ export default function PeopleFollowingPeopleList() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch({ type: Peopleactions.GET_FOLLOWING_PEOPLE_LIST, payload: state?.state?.id })
-    }, [Peopleactions,UserDetails])
+    }, [UserDetails])
 
     return (
         <div id="wrapper">

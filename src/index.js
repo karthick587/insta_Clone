@@ -52,7 +52,7 @@ render(
         <PrivateRoute exact path="/People-FollowingPeopleList" component={PeopleFollowingPeopleList} />
         {/* <PrivateRoute exact path="/User-Post" component={UserPost} /> */}
         <PrivateRoute exact path="/PeopleProfile" component={PeopleProfile} />
-        <PrivateRoute exact path="/messanger" component={Messenger} />
+        {/* <PrivateRoute exact path="/messanger" component={Messenger} /> */}
       </Switch>
     </Router>
   </Provider>
