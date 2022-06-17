@@ -15,7 +15,7 @@ const getConversationList = function* (data) {
  const {payload}=data
     try {
         const result = yield call(() =>
-            axios.get(`http://localhost:3001/api/conv/byId/${payload}`)
+            axios.get(`${API_URL}/api/conv/byId/${payload}`)
         );
         
         yield put({ type: actions.SET_CONVERSATION_LIST, payload: result.data });
