@@ -21,11 +21,11 @@ const UdateUserDetails = function* (data) {
 
     try {
         const result = yield call(() =>
-            axios.put(`${API_URL}/api/user/update/${payload.userId}`, payload.data)
+            axios.put(`${API_URL}/api/user/update`, payload)
 
         );
         console.log(result)
-        yield put({ type: actions.GET_USER_DETAILS, payload: payload.userId });
+        yield put({ type: actions.GET_USER_DETAILS, payload: payload.id });
     } catch (err) {
         console.log(err)
     }

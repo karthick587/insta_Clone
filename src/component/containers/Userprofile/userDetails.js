@@ -14,14 +14,16 @@ export default function UserDetails() {
     const UserName = useRef()
     const Status = useRef()
     const District = useRef()
+    console.log(UserDetails)
     const Update = () => {
         const data = new FormData();
         data.append("file", profileImg[0]);
+        data.append("id", UserDetails?.UserId);
         data.append("status", Status.current.value);
         data.append("UserName", UserName.current.value);
         data.append("District", District.current.value);
         dispatch({
-            type: actions.UPDATE_USER_DETAILS, payload: { data: data, userId: UserDetails.UserId }
+            type: actions.UPDATE_USER_DETAILS, payload:data
         });
         setupdate(false)
     }
