@@ -23,7 +23,7 @@ export default function UserDetails() {
         data.append("UserName", UserName.current.value);
         data.append("District", District.current.value);
         dispatch({
-            type: actions.UPDATE_USER_DETAILS, payload:data
+            type: actions.UPDATE_USER_DETAILS, payload:{data:data,userId:UserDetails?.UserId}
         });
         setupdate(false)
     }
