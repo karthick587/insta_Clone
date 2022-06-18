@@ -19,7 +19,7 @@ import Loader from "./component/common/loader";
 import PeoplefollowersPeopleList from "./component/pages/PeoplefollowersPeopleList";
 import PeopleFollowingPeopleList from "./component/pages/PeopleFollowingPeopleList";
 import UserPost from "./component/pages/userPost";
-// import Messenger from "./component/pages/messenger";
+import Messenger from "./component/pages/messenger";
 const rootElement = document.getElementById("root");
 
 if (localStorage.getItem('token')) {
@@ -52,7 +52,7 @@ render(
         <PrivateRoute exact path="/People-FollowingPeopleList" component={PeopleFollowingPeopleList} />
         {/* <PrivateRoute exact path="/User-Post" component={UserPost} /> */}
         <PrivateRoute exact path="/PeopleProfile" component={PeopleProfile} />
-        {/* <PrivateRoute exact path="/messanger" component={Messenger} /> */}
+        <PrivateRoute exact path="/messanger" component={Messenger} />
       </Switch>
     </Router>
   </Provider>
