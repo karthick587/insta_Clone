@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Peopleactions from "../../redux/people/actions";
-import PeoplePost from "./peoplePost";
+import PeoplesPost from "./peoplesPost";
 export default function PeopleProfile() {
     const dispatch = useDispatch()
     const { PeopleProfile } = useSelector((state) => state.PeopleReducer);
@@ -29,7 +29,7 @@ export default function PeopleProfile() {
 
                     <UserDetails />
                     <h1 class="lg:text-2xl text-lg font-extrabold leading-none text-gray-900 tracking-tight mt-8"> Highths </h1>
-                    <PeoplePost />
+                    <PeoplesPost people={PeopleProfile} />
 
 
                     <div class="flex justify-center mt-6">

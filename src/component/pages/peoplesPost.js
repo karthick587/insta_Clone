@@ -2,17 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import actions from "../../../src/redux/post/actions";
 import Like from "../common/like";
-export default function UserPost() {
+export default function PeoplesPost(props) {
     const dispatch = useDispatch()
-    const { UserDetails } = useSelector((state) => state.AuthReducer);
+    const { people } = props
     const { userPost } = useSelector((state) => state.PostReducer);
     useEffect(() => {
-        if (UserDetails) {
+        if (people) {
             dispatch({
-                type: actions.GET_POST_LIST_USER_ID, payload: UserDetails?.UserId
+                type: actions.GET_POST_LIST_USER_ID, payload: people?.UserId
             });
         }
-    }, [UserDetails])
+    }, [people])
     console.log(userPost)
     return (
         <div>
@@ -33,7 +33,7 @@ export default function UserPost() {
                                         <div class="flex flex-1 items-center space-x-4">
                                             <a href="#">
                                                 <div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-0.5 rounded-full">
-                                                    <img src={UserDetails?.ProfileImage} class="bg-gray-200 border border-white rounded-full w-8 h-8" />
+                                                    <img src={people?.ProfileImage} class="bg-gray-200 border border-white rounded-full w-8 h-8" />
                                                 </div>
                                             </a>
                                             <span class="block capitalize font-semibold dark:text-gray-100"> {val?.UserName} </span>
@@ -88,7 +88,7 @@ export default function UserPost() {
 
                                         <div class="flex space-x-4 lg:font-bold">
                                             <a href="#" class="flex items-center space-x-2">
-                                                <Like post={val} id={UserDetails?.UserId} />
+                                                <Like post={val} id={people?.UserId} />
                                                 <div> Like</div>
                                             </a>
                                             <a href="#" class="flex items-center space-x-2">
@@ -113,9 +113,14 @@ export default function UserPost() {
                                                 <img src="assets/images/avatars/avatar-2.jpg" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2" />
                                             </div>
                                             <div class="dark:text-gray-100">
-                                                Liked <strong> Johnson</strong> and <strong> {val?.likes?.length} </strong>
+                                                Likes
+                                                {/* <strong> Johnson</strong> and  */}
+                                                <strong> {val?.likes?.length} </strong>
                                             </div>
                                         </div>
+
+                                       
+
                                         <div class="bg-gray-100 bg-gray-100 rounded-full rounded-md relative dark:bg-gray-800">
                                             <input type="text" placeholder="Add your Comment.." class="bg-transparent max-h-10 shadow-none" />
                                             <div class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">
@@ -123,8 +128,14 @@ export default function UserPost() {
                                                 <a href="#"> <i class="uil-video"></i></a>
                                             </div>
                                         </div>
+
                                     </div>
+
                                 </div>
+
+
+
+
                             </div>
                             {/* <div class="lg:w-5/12">
 

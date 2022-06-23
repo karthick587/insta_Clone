@@ -4,12 +4,13 @@ import SideNavbar from "../common/sideNavbar";
 import PeopleCard from "../containers/PeopleList/PeopleCard";
 import { useDispatch, useSelector } from "react-redux";
 import Peopleactions from "../../redux/people/actions";
-
+import useSWR from 'swr'
+const fetcher = url => fetch(url).then(r => r.json())
 export default function PeopleList() {
     const { PeopleList } = useSelector((state) => state.PeopleReducer);
     const dispatch = useDispatch()
     const { UserDetails } = useSelector((state) => state.AuthReducer);
-
+    const { data, error } = useSWR('https://insta-clone-database.vercel.app/api/user/list', fetcher)
     useEffect(() => {
         dispatch({ type: Peopleactions.GET_PEOPLE_LIST })
     }, [])
@@ -20,6 +21,13 @@ export default function PeopleList() {
         );
     }, [])
     const peoples = PeopleList?.filter(val => val._id !== UserDetails.UserId)
+    if (error){
+        console.log(data)
+    }
+  if (!data){
+    console.log("data is loading")
+  }
+    console.log(data)
     return (
         <div id="wrapper">
             <SideNavbar />
@@ -33,7 +41,7 @@ export default function PeopleList() {
                                 <a href="#"> Refresh</a>
                             </div>
                             <div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 dark:divide-gray-800 dark:text-gray-100">
-                                {peoples?.map((val) =>
+                                {data?.map((val) =>
                                     <PeopleCard
                                         people={val}
                                     />

@@ -12,20 +12,23 @@ export default function PeopleCard(props) {
     // console.log(UserDetails.UserId)
     const follow = () => {
         dispatch({
-            type: actions.SET_FOLLOW_PEOPLE, payload:{UserId:UserDetails.UserId,ToFollowId:people?._id}
+            type: actions.SET_FOLLOW_PEOPLE, payload: { UserId: UserDetails.UserId, ToFollowId: people?._id }
         });
         dispatch({ type: actions.GET_PEOPLE_LIST })
     }
     const Unfollow = () => {
         dispatch({
-            type: actions.SET_UNFOLLOW_PEOPLE, payload:{UserId:UserDetails.UserId,ToUnFollowId:people?._id}
+            type: actions.SET_UNFOLLOW_PEOPLE, payload: { UserId: UserDetails.UserId, ToUnFollowId: people?._id }
         });
         dispatch({ type: actions.GET_PEOPLE_LIST })
     }
 
     function ViewPeopleProfile() {
-      
-        history.push('/PeopleProfile',people?._id);
+        if (UserDetails?.UserId === people?._id) {
+            history.push('/', people?._id);
+        } else {
+            history.push('/PeopleProfile', people?._id);
+        }
     };
 
     return (
@@ -39,11 +42,12 @@ export default function PeopleCard(props) {
                     <span class="block capitalize text-sm"> {people?.District} </span>
                 </div>
             </div>
-            {following.find(val => val.UserId === people._id) ?
+            {UserDetails?.UserId !== people?._id ? following.find(val => val.UserId === people._id) ?
                 <a href="#" onClick={Unfollow} class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 dark:border-gray-800"> UnFollow </a>
                 :
                 <a href="#" onClick={follow} class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 dark:border-gray-800" > Follow </a>
-            }
+                :
+                <></>}
         </div>
     )
 }

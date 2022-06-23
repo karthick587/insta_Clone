@@ -93,3 +93,10 @@
   width: 95.333333%;
 
 }
+.color-pink{
+  color: rgba(236, 72, 153, var(--tw-bg-opacity));
+}
+.s-30{
+    height: 30px;
+    width: 30px;
+}
