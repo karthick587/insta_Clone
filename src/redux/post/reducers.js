@@ -2,7 +2,8 @@ import actions from "./actions";
 
 const initialState = {
   post: [],
-  userPost: []
+  userPost: [],
+  feeds: []
 };
 
 const PostReducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ const PostReducer = (state = initialState, action) => {
       return {
         ...state,
         userPost: action.payload
+      }
+    case actions.SET_FEEDS:
+      return {
+        ...state,
+        feeds: action.payload
       }
 
 

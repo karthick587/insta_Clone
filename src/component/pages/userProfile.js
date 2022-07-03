@@ -20,7 +20,7 @@ export default function UserProfile() {
                 <Header />
                 <div class="container pro-container m-auto">
                     <UserDetails />
-                    <h1 class="lg:text-2xl text-lg font-extrabold leading-none text-gray-900 tracking-tight mt-8"> Highths </h1>
+                    <h1 class="lg:text-2xl text-lg font-extrabold leading-none text-gray-900 tracking-tight mt-8"> Posts </h1>
                     <UserPost />
                 </div>
             </div>

@@ -20,6 +20,7 @@ import PeoplefollowersPeopleList from "./component/pages/PeoplefollowersPeopleLi
 import PeopleFollowingPeopleList from "./component/pages/PeopleFollowingPeopleList";
 import UserPost from "./component/pages/userPost";
 import Messenger from "./component/pages/messenger";
+import Feeds from "./component/pages/feeds";
 const rootElement = document.getElementById("root");
 
 if (localStorage.getItem('token')) {
@@ -52,6 +53,7 @@ render(
         <PrivateRoute exact path="/People-FollowingPeopleList" component={PeopleFollowingPeopleList} />
         {/* <PrivateRoute exact path="/User-Post" component={UserPost} /> */}
         <PrivateRoute exact path="/PeopleProfile" component={PeopleProfile} />
+        <PrivateRoute exact path="/feeds" component={Feeds} />
         <PrivateRoute exact path="/messanger" component={Messenger} />
       </Switch>
     </Router>

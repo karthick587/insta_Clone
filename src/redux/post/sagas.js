@@ -9,6 +9,8 @@ const PostSaga = function* () {
         yield takeEvery(actions.GET_POST_LIST_USER_ID, getPostListByuserid),
         yield takeEvery(actions.SET_POST, setPost),
         yield takeEvery(actions.SET_LIKE, setLike),
+        yield takeEvery(actions.GET_FEEDS, getFeedsList),
+
 
     ]);
 };
@@ -74,4 +76,18 @@ const getPostListByuserid = function* (data) {
     }
 };
 
+const getFeedsList = function* (data) {
+    const { payload } = data
+    console.log(payload)
+    try {
+        const result = yield call(() =>
+            axios.get(`http://localhost:3001/api/user/feed/${payload}`)
+        );
+        if (result.data.statusCode === 200) {
+            yield put({ type: actions.SET_FEEDS, payload: result?.data?.data });
+        }
+    } catch (err) {
+        console.log(err)
+    }
+};
 export default PostSaga;

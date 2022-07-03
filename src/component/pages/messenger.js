@@ -2,13 +2,40 @@ import React, { Component, useEffect, useRef, useState } from 'react'
 // import { io } from 'socket.io-client'
 import { useDispatch, useSelector } from "react-redux";
 import actions from '../../redux/messager/actions';
+import Pusher from 'pusher-js';
 export default function Messenger() {
     const dispatch = useDispatch()
     const reciverId = useRef()
     const text = useRef()
-    const [socket, setSocket] = useState(null)
+    const [socket, setSocket] = useState("")
     const { UserDetails } = useSelector((state) => state.AuthReducer);
     const { conversationList } = useSelector((state) => state.MessangerReducer);
+
+
+
+    const pusher = new Pusher('d9259f061ae07969923f', {
+        cluster: 'ap2'
+    });
+
+    const channel = pusher.subscribe('chat');
+    var fhfg = ""
+    const callback = (e) => {
+        setSocket(e)
+    }
+    useEffect(() => {
+        channel.bind('message', data => {
+            callback(data)
+            console.log(data)
+        });
+    }, [channel])
+
+    //   channel.bind('message', data => {
+
+    //     console.log(data)
+    //   });
+    channel.emit('message', "hello")
+
+    console.log(fhfg)
     // useEffect(() => {
     //     setSocket(io("https://insta-clone-database.vercel.app"))
     //     dispatch({
@@ -54,9 +81,11 @@ export default function Messenger() {
             </div>
             <button
             //  onClick={send}
-             >
+            >
                 send
             </button>
+
+            {fhfg}
         </div>
     )
 }
