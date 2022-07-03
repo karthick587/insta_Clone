@@ -81,7 +81,7 @@ const getFeedsList = function* (data) {
     console.log(payload)
     try {
         const result = yield call(() =>
-            axios.get(`http://localhost:3001/api/user/feed/${payload}`)
+            axios.get(`${API_URL}/api/user/feed/${payload}`)
         );
         if (result.data.statusCode === 200) {
             yield put({ type: actions.SET_FEEDS, payload: result?.data?.data });
