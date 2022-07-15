@@ -66,26 +66,95 @@ export default function Messenger() {
     //     });
     // }
     // console.log(conversationList)
-    return (
-        <div>
-            messenger
-            <div>
-                <div>
-                    <p>Reciver id</p>
-                    <input ref={reciverId} />
-                </div>
-                <div>
-                    <p>message</p>
-                    <input ref={text} />
-                </div>
-            </div>
-            <button
-            //  onClick={send}
-            >
-                send
-            </button>
 
-            {fhfg}
-        </div>
+
+
+
+    // const source = new EventSource(`http://localhost:3001/api/server-sent-events`);
+
+    // source.addEventListener('message', function(e) {            
+    //    console.log(e.data) 
+    // }, false)
+    // source.addEventListener('message', function (e) {
+    //     console.log(e.data) 
+    // }, false)
+
+    // const source2 = new EventSource(`http://localhost:3001/api/events`);
+
+    // source2.addEventListener('message', function(e) {            
+    //    console.log(e.data) 
+    // }, false)
+    
+    
+    const [ facts, setFacts ] = useState([]);
+    const [ clients, setclients ] = useState([]);
+  const [ listening, setListening ] = useState(false);
+
+  useEffect( () => {
+    if (!listening) {
+      const events = new EventSource('http://localhost:3001/api/events');
+
+      events.onmessage = (event) => {
+        const parsedData = JSON.parse(event.data);
+
+        setFacts((facts) => facts.concat(parsedData));
+      };
+
+      setListening(true);
+    }
+    if (!listening) {
+        const events = new EventSource('http://localhost:3001/api/client');
+  
+        events.onmessage = (event) => {
+          const parsedData = JSON.parse(event.data);
+  
+          setclients((clients) => clients.concat(parsedData));
+        };
+  
+        setListening(true);
+      }
+  }, [listening, facts,clients]);
+console.log(facts)
+console.log(clients)
+
+    return (
+        // <div>
+        //     messenger
+        //     <div>
+        //         <div>
+        //             <p>Reciver id</p>
+        //             <input ref={reciverId} />
+        //         </div>
+        //         <div>
+        //             <p>message</p>
+        //             <input ref={text} />
+        //         </div>
+        //     </div>
+        //     <button
+        //     //  onClick={send}
+        //     >
+        //         send
+        //     </button>
+
+        //     {fhfg}
+        // </div>
+        <table className="stats-table">
+        <thead>
+          <tr>
+            <th>Fact</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            facts.map((fact, i) =>
+              <tr key={i}>
+                <td>{fact.info}</td>
+                <td>{fact.source}</td>
+              </tr>
+            )
+          }
+        </tbody>
+      </table>
     )
 }
