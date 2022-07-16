@@ -39,7 +39,7 @@ export default function MessageBody(props) {
     //         setchat(data)
     //     }
     // }, [data])
-    const events = new EventSource(`${API_URL}/api/events`);
+    const events = new EventSource(`http://localhost:3001/api/events`);
 
     events.onmessage = (event) => {
         const parsedData = JSON.parse(event.data);
