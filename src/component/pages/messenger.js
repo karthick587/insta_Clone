@@ -2,7 +2,7 @@ import React, { Component, useEffect, useRef, useState } from 'react'
 // import { io } from 'socket.io-client'
 import { useDispatch, useSelector } from "react-redux";
 import actions from '../../redux/messager/actions';
-import Pusher from 'pusher-js';
+
 import ConversationDiv from '../common/conversationDiv';
 import useSWR from 'swr'
 import MessageBody from '../containers/Messanger/messageBody';
@@ -23,21 +23,7 @@ export default function Messenger() {
 
   }, [localStorage.getItem('UserId')])
 
-  // const pusher = new Pusher('d9259f061ae07969923f', {
-  //   cluster: 'ap2'
-  // });
-
-  // const channel = pusher.subscribe('chat');
-  // var fhfg = ""
-  // const callback = (e) => {
-  //   setSocket(e)
-  // }
-  // useEffect(() => {
-  //   channel.bind('message', data => {
-  //     callback(data)
-  //     console.log(data)
-  //   });
-  // }, [channel])
+  
 
   //   channel.bind('message', data => {
 
@@ -126,11 +112,11 @@ export default function Messenger() {
   // console.log(clients)   //     const events = new EventSource('http://localhost:3001/api/client');
 
   //     /
- 
+
   const viewMsg = (val) => {
     setmessage(val)
   }
-  
+
   return (
     <div className='chat-div d-flex'>
       <div className='col-4'>
@@ -139,7 +125,7 @@ export default function Messenger() {
           {data &&
             conversationList?.map(val =>
               <div>
-                <ConversationDiv peoples={data} PersonId={val?.Members[1]===localStorage.getItem('UserId')&&val?.Members[0]||val?.Members[0]===localStorage.getItem('UserId')&&val?.Members[1]} ConversationId={val?._id} onClick={() => viewMsg(val)} />
+                <ConversationDiv peoples={data} PersonId={val?.Members[1] === localStorage.getItem('UserId') && val?.Members[0] || val?.Members[0] === localStorage.getItem('UserId') && val?.Members[1]} ConversationId={val?._id} onClick={() => viewMsg(val)} />
               </div>
             )}
         </div>

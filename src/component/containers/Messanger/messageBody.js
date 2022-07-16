@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { API_URL } from "../../../utils/constants";
+import Pusher from 'pusher-js';
 import useSWR from 'swr'
 import axios from 'axios';
 import SendMessage from "./sendMesage";
@@ -16,6 +17,41 @@ export default function MessageBody(props) {
     const { ConversationId } = props
     const [chat, setchat] = useState([])
 
+
+
+    const pusher = new Pusher('d9259f061ae07969923f', {
+        cluster: 'ap2'
+    });
+
+    const channel = pusher.subscribe('chat');
+    var fhfg = ""
+    // const callback = (e) => {
+    //     console.log(e)
+    //     setchat(e)
+    // }
+    useEffect(() => {
+        channel.bind('message', data => {
+            setchat(data)
+            console.log(data)
+        });
+    }, [channel])
+
+
+
+
+    //     setchat(data)
+    // //     }
+    // // }, [data])
+    // const events = new EventSource(`http://localhost:3001/api/events`);
+
+    // events.onmessage = (event) => {
+    //     const parsedData = JSON.parse(event.data);
+    //     console.log(parsedData)
+    //     if (parsedData?.ConversationId === ConversationId) {
+    //         setchat([...chat, parsedData])
+
+    //     }
+    // };
     useEffect(() => {
         if (ConversationId) {
             fetch(`${API_URL}/api/messages/${ConversationId}`)
@@ -32,24 +68,12 @@ export default function MessageBody(props) {
         }
 
     }, [ConversationId]);
-    // const { data, error } = useSWR(`https://insta-clone-database.vercel.app/api/messages/${ConversationId}`, fetcher)
+    // // const { data, error } = useSWR(`https://insta-clone-database.vercel.app/api/messages/${ConversationId}`, fetcher)
 
-    // useEffect(() => {
-    //     if (data) {
-    //         setchat(data)
-    //     }
-    // }, [data])
-    const events = new EventSource(`http://localhost:3001/api/events`);
-
-    events.onmessage = (event) => {
-        const parsedData = JSON.parse(event.data);
-        console.log(parsedData)
-        if (parsedData?.ConversationId === ConversationId) {
-            setchat([...chat, parsedData])
-            
-        }
-    };
-    console.log(chat)
+    // // useEffect(() => {
+    // //     if (data) {
+    // //    
+    // console.log(chat)
     return (
         <div className="Chat-person-Div">
             <div className="Chat-person-head">
