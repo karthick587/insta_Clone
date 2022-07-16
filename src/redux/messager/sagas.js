@@ -31,7 +31,7 @@ const sendMessage = function* (data) {
     console.log(payload)
     try {
         const result = yield call(() =>
-            axios.post(`http://localhost:3001/api/message/send`, payload)
+            axios.post(`https://insta-clone-database.vercel.app/api/message/send`, payload)
         );
         console.log(result)
         //  yield put({ type: actions.SET_CONVERSATION_LIST, payload: result.data });

@@ -2,7 +2,6 @@ import React, { Component, useEffect, useRef, useState } from 'react'
 // import { io } from 'socket.io-client'
 import { useDispatch, useSelector } from "react-redux";
 import actions from '../../redux/messager/actions';
-
 import ConversationDiv from '../common/conversationDiv';
 import useSWR from 'swr'
 import MessageBody from '../containers/Messanger/messageBody';
