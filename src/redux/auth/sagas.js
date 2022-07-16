@@ -42,6 +42,7 @@ const VerifyTocket = function* (data) {
         );
         if (result.data.statusCode === 200) {
             yield put({ type: actions.SET_USER_DETAILS, payload: result.data.result });
+            localStorage.setItem('UserId', result?.data?.result?.UserId);
             yield put({ type: actions.SET_AUTHETICATRION, payload: true });
             yield put({ type: actions.SET_LOADER, payload: false });
         } else {
@@ -86,6 +87,7 @@ const getUsersDetails = function* (data) {
             axios.get(`${API_URL}/api/users/list/${payload}`)
         );
         yield put({ type: actions.SET_USER_DETAILS, payload: result.data });
+        localStorage.setItem('UserId',  result?.data?.UserId)
     } catch (err) {
         console.log(err)
     }

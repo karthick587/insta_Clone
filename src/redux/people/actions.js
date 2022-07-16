@@ -1,4 +1,4 @@
-const Messangeractions = {
+const PeopleAction = {
   GET_PEOPLE_LIST:"GET_PEOPLE_LIST",
   SET_PEOPLE_LIST: 'SET_PEOPLE_LIST',
   GET_PEOPLE_PROFILE:"GET_PEOPLE_PROFILE",
@@ -12,4 +12,4 @@ const Messangeractions = {
  
 };
 
-export default Messangeractions;
+export default PeopleAction;

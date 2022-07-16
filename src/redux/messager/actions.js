@@ -1,6 +1,7 @@
-const Peopleactions = {
+const MessengerAction = {
   GET_CONVERSATION_LIST:"GET_CONVERSATION_LIST",
   SET_CONVERSATION_LIST: 'SET_CONVERSATION_LIST',
+  SEND_MESSAGE:"SEND_MESSAGE",
   // GET_PEOPLE_PROFILE:"GET_PEOPLE_PROFILE",
   // SET_PEOPLE_PROFILE: 'SET_PEOPLE_PROFILE',
   // SET_FOLLOW_PEOPLE: 'SET_FOLLOW_PEOPLE',
@@ -12,4 +13,4 @@ const Peopleactions = {
  
 };
 
-export default Peopleactions;
+export default MessengerAction;
