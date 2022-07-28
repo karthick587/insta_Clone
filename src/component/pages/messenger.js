@@ -33,41 +33,41 @@ export default function Messenger() {
   // console.log(conversationList)
 
   
-  useEffect(() => {
-    setSocket(io("https://insta-clone-database.vercel.app:8900"))
+  // useEffect(() => {
+  //   setSocket(io("http://localhost:8900"))
 
-    dispatch({
-      type: actions.GET_CONVERSATION_LIST, payload: UserDetails?.UserId
-    });
-  }, [UserDetails])
-  useEffect(() => {
-    //add user 
+  //   dispatch({
+  //     type: actions.GET_CONVERSATION_LIST, payload: UserDetails?.UserId
+  //   });
+  // }, [UserDetails])
+  // useEffect(() => {
+  //   //add user 
 
-    if (socket) {
-      if (UserDetails?.UserId) {
-        socket.emit("adduser", UserDetails?.UserId)
-      }
-      // get user
-      socket?.on("getUser", users => {
-        console.log(users)
-      })
-      // get message
-      socket?.on("getMessage", (data) => {
-        console.log(data)
-      })
-    }
+  //   if (socket) {
+  //     if (UserDetails?.UserId) {
+  //       socket.emit("adduser", UserDetails?.UserId)
+  //     }
+  //     // get user
+  //     socket?.on("getUser", users => {
+  //       console.log(users)
+  //     })
+  //     // get message
+  //     socket?.on("getMessage", (data) => {
+  //       console.log(data)
+  //     })
+  //   }
 
-  }, [socket, UserDetails])
-  console.log(socket)
-  const send = () => {
-    // //send message
-    // socket?.emit("sendMessage", {
-    //   senderId: UserDetails?.UserId,
-    //   receiverId: reciverId.current.value,
-    //   text: text.current.value,
-    // });
-  }
-  console.log(conversationList)
+  // }, [socket, UserDetails])
+  // console.log(socket)
+  // const send = () => {
+  //   // //send message
+  //   // socket?.emit("sendMessage", {
+  //   //   senderId: UserDetails?.UserId,
+  //   //   receiverId: reciverId.current.value,
+  //   //   text: text.current.value,
+  //   // });
+  // }
+  // console.log(conversationList)
 
 
 
