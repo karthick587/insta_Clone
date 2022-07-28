@@ -34,7 +34,7 @@ export default function Messenger() {
 
   
   useEffect(() => {
-    setSocket(io("https://insta-clone-database.vercel.app:8900"))
+    setSocket(io("https://insta-clone-database.vercel.app"))
 
     dispatch({
       type: actions.GET_CONVERSATION_LIST, payload: UserDetails?.UserId
