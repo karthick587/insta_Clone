@@ -10,7 +10,7 @@ export default function Messenger() {
   const dispatch = useDispatch()
   const reciverId = useRef()
   const text = useRef()
-  const [socket, setSocket] = useState("")
+  // const [socket, setSocket] = useState("")
   const { UserDetails } = useSelector((state) => state.AuthReducer);
   const { conversationList } = useSelector((state) => state.MessangerReducer);
   const { data, error } = useSWR('https://insta-clone-database.vercel.app/api/user/list', fetcher)
@@ -31,43 +31,42 @@ export default function Messenger() {
   // channel.emit('message', "hello")
 
   // console.log(conversationList)
-
+  // setSocket(io("http://localhost:8900"))
+  const socket=io.connect('https://insta-clone-database.vercel.app:3001')
+  useEffect(() => {
   
-  // useEffect(() => {
-  //   setSocket(io("http://localhost:8900"))
+    dispatch({
+      type: actions.GET_CONVERSATION_LIST, payload: UserDetails?.UserId
+    });
+  }, [UserDetails])
+  useEffect(() => {
+    //add user 
 
-  //   dispatch({
-  //     type: actions.GET_CONVERSATION_LIST, payload: UserDetails?.UserId
-  //   });
-  // }, [UserDetails])
-  // useEffect(() => {
-  //   //add user 
+    if (socket) {
+      if (UserDetails?.UserId) {
+        socket.emit("adduser", UserDetails?.UserId)
+      }
+      // get user
+      socket?.on("getUser", users => {
+        console.log(users)
+      })
+      // get message
+      socket?.on("getMessage", (data) => {
+        console.log(data)
+      })
+    }
 
-  //   if (socket) {
-  //     if (UserDetails?.UserId) {
-  //       socket.emit("adduser", UserDetails?.UserId)
-  //     }
-  //     // get user
-  //     socket?.on("getUser", users => {
-  //       console.log(users)
-  //     })
-  //     // get message
-  //     socket?.on("getMessage", (data) => {
-  //       console.log(data)
-  //     })
-  //   }
-
-  // }, [socket, UserDetails])
-  // console.log(socket)
-  // const send = () => {
-  //   // //send message
-  //   // socket?.emit("sendMessage", {
-  //   //   senderId: UserDetails?.UserId,
-  //   //   receiverId: reciverId.current.value,
-  //   //   text: text.current.value,
-  //   // });
-  // }
-  // console.log(conversationList)
+  }, [socket, UserDetails])
+  console.log(socket)
+  const send = () => {
+    // //send message
+    // socket?.emit("sendMessage", {
+    //   senderId: UserDetails?.UserId,
+    //   receiverId: reciverId.current.value,
+    //   text: text.current.value,
+    // });
+  }
+  console.log(conversationList)
 
 
 
