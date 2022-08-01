@@ -32,7 +32,7 @@ export default function Messenger() {
 
   // console.log(conversationList)
   // setSocket(io("http://localhost:8900"))
-  const socket=io.connect('https://insta-clone-database.vercel.app:3001')
+  const socket=io.connect('https://insta-clone-database.vercel.app')
   useEffect(() => {
   
     dispatch({
