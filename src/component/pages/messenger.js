@@ -10,7 +10,7 @@ export default function Messenger() {
   const dispatch = useDispatch()
   const reciverId = useRef()
   const text = useRef()
-  // const [socket, setSocket] = useState("")
+  const [socket, setSocket] = useState("")
   const { UserDetails } = useSelector((state) => state.AuthReducer);
   const { conversationList } = useSelector((state) => state.MessangerReducer);
   const { data, error } = useSWR('https://insta-clone-database.vercel.app/api/user/list', fetcher)
@@ -31,10 +31,11 @@ export default function Messenger() {
   // channel.emit('message', "hello")
 
   // console.log(conversationList)
-  // setSocket(io("http://localhost:8900"))
-  const socket=io.connect('https://insta-clone-database.vercel.app')
-  useEffect(() => {
+
   
+  useEffect(() => {
+    setSocket(io("https://insta-clone-database.vercel.app"))
+
     dispatch({
       type: actions.GET_CONVERSATION_LIST, payload: UserDetails?.UserId
     });
